@@ -17,10 +17,10 @@ export class AuthService {
     private userModel: Model<User>,
     private jwtService: JwtService,
   ) {
-    ({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: process.env.JWT_SECRET,
-    });
+    // ({
+    //   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    //   secretOrKey: process.env.JWT_SECRET,
+    // });
   }
   async signUp(
     signUpDto: SignUpDto,
