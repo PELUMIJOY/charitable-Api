@@ -7,7 +7,7 @@ export class User {
   @Prop()
   name: string;
   @Prop({
-    unique: [true, 'Email already exist'],
+    unique: [true, { message: 'Email already exist' }],
   })
   email: string;
   @Prop()

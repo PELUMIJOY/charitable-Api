@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -28,21 +32,36 @@ export class AuthService {
     const { name, email, password } = signUpDto;
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    try {
+      const existingUser = await this.userModel.findOne({ email });
+      if (existingUser) {
+        throw new UnauthorizedException('email already exist');
+      }
+      if (password.length < 6) {
+        throw new UnauthorizedException(
+          'Password must be 6 characters or more',
+        );
+      }
+      const user = await this.userModel.create({
+        name,
+        email,
+        password: hashedPassword,
+      });
 
-    const user = await this.userModel.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
+      const token = this.jwtService.sign(
+        { id: user._id },
+        { secret: process.env.JWT_SECRET },
+      );
 
-    const token = this.jwtService.sign(
-      { id: user._id },
-      { secret: process.env.JWT_SECRET },
-    );
+      const { password: _, ...userWithoutPassword } = user.toObject();
 
-    const { password: _, ...userWithoutPassword } = user.toObject();
-
-    return { user: userWithoutPassword, token };
+      return { user: userWithoutPassword, token };
+    } catch (error) {
+      if (error.code === 11000) {
+        throw new ConflictException('User already exists');
+      }
+      throw error;
+    }
   }
 
   async login(loginDto: LoginDto): Promise<{ token: string }> {
