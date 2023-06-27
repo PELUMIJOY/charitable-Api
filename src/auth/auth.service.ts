@@ -12,6 +12,7 @@ import { SignUpDto } from './dto/signup.dto';
 import { ExtractJwt } from 'passport-jwt';
 import * as dotenv from 'dotenv';
 import { LoginDto } from './dto/login.dto';
+
 dotenv.config();
 
 @Injectable()
@@ -37,9 +38,9 @@ export class AuthService {
       if (existingUser) {
         throw new UnauthorizedException('email already exist');
       }
-      if (password.length < 6) {
+      if (password.length < 4) {
         throw new UnauthorizedException(
-          'Password must be 6 characters or more',
+          'Password must be 4 characters or more',
         );
       }
       const user = await this.userModel.create({
