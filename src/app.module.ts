@@ -8,6 +8,7 @@ import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { UserSchema } from './auth/schemas/user.schema';
 import { JwtService } from '@nestjs/jwt';
+import { GoogleStrategy } from './google.strategy';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { JwtService } from '@nestjs/jwt';
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
   ],
   controllers: [AppController, AuthController],
-  providers: [AppService, JwtService, AuthService, AuthModule],
+  providers: [AppService, JwtService, AuthService, AuthModule, GoogleStrategy],
 })
 export class AppModule {}
