@@ -5,9 +5,10 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-  "engines": {"node": ">=14"},
+  "engines": {"node": "^14.02.0"},
   "scripts": {
-    "build": "nest build",
+    // "build": "nest build",
+    "build": "node_modules/.bin/nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
