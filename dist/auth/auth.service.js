@@ -64,7 +64,15 @@ let AuthService = exports.AuthService = class AuthService {
             throw new common_1.UnauthorizedException('invalid email or password');
         }
         const token = this.jwtService.sign({ id: user._id }, { secret: process.env.JWT_SECRET });
-        return { token };
+        return {
+            message: 'Login successful',
+            user: {
+                Name: user.name,
+                Email: user.email,
+                id: user._id.toString(),
+                token,
+            },
+        };
     }
 };
 exports.AuthService = AuthService = __decorate([

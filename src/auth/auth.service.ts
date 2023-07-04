@@ -65,7 +65,10 @@ export class AuthService {
     }
   }
 
-  async login(loginDto: LoginDto): Promise<{ token: string }> {
+  async login(loginDto: LoginDto): Promise<{
+    message: string;
+    user: { Name: string; Email: string; id: string; token: string };
+  }> {
     const { email, password } = loginDto;
     const user = await this.userModel.findOne({ email });
     if (!user) {
@@ -79,6 +82,14 @@ export class AuthService {
       { id: user._id },
       { secret: process.env.JWT_SECRET },
     );
-    return { token };
+    return {
+      message: 'Login successful',
+      user: {
+        Name: user.name,
+        Email: user.email,
+        id: user._id.toString(),
+        token,
+      },
+    };
   }
 }

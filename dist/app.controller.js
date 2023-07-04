@@ -17,6 +17,9 @@ const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const passport_1 = require("@nestjs/passport");
 let AppController = exports.AppController = class AppController {
+    getHello() {
+        throw new Error('Method not implemented.');
+    }
     constructor(appService) {
         this.appService = appService;
     }

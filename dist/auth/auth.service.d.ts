@@ -12,6 +12,12 @@ export declare class AuthService {
         token: string;
     }>;
     login(loginDto: LoginDto): Promise<{
-        token: string;
+        message: string;
+        user: {
+            Name: string;
+            Email: string;
+            id: string;
+            token: string;
+        };
     }>;
 }
