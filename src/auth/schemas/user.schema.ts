@@ -12,9 +12,9 @@ export class User {
   email: string;
   @Prop()
   password: string;
-  @Prop({ type: [String] })
+  @Prop({ type: String })
   AreaOfInterst: {
-    type: string[];
+    type: string;
     enum: ['Vocational Skill', 'Technical Skill'];
   };
 }

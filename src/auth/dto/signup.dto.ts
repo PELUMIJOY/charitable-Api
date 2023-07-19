@@ -21,6 +21,6 @@ export class SignUpDto {
   readonly password: string;
 
   @IsNotEmpty()
-  @IsArray()
-  readonly AreaOfInterest: Array<string>;
+  @IsString()
+  readonly AreaOfInterest: string;
 }

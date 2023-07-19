@@ -28,7 +28,7 @@ export declare class User {
     email: string;
     password: string;
     AreaOfInterst: {
-        type: string[];
+        type: string;
         enum: ['Vocational Skill', 'Technical Skill'];
     };
 }
