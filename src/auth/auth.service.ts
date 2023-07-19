@@ -9,7 +9,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/signup.dto';
-import { ExtractJwt } from 'passport-jwt';
 import * as dotenv from 'dotenv';
 import { LoginDto } from './dto/login.dto';
 
@@ -21,16 +20,11 @@ export class AuthService {
     @InjectModel(User.name)
     private userModel: Model<User>,
     private jwtService: JwtService,
-  ) {
-    // ({
-    //   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    //   secretOrKey: process.env.JWT_SECRET,
-    // });
-  }
+  ) {}
   async signUp(
     signUpDto: SignUpDto,
   ): Promise<{ user: Omit<User, 'password'>; token: string }> {
-    const { name, email, password } = signUpDto;
+    const { name, email, password, AreaOfInterest } = signUpDto;
 
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
@@ -47,6 +41,7 @@ export class AuthService {
         name,
         email,
         password: hashedPassword,
+        AreaOfInterest,
       });
 
       const token = this.jwtService.sign(

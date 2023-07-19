@@ -27,6 +27,10 @@ export declare class User {
     name: string;
     email: string;
     password: string;
+    AreaOfInterst: {
+        type: string[];
+        enum: ['Vocational Skill', 'Technical Skill'];
+    };
 }
 export declare const UserSchema: import("mongoose").Schema<User, import("mongoose").Model<User, any, any, any, import("mongoose").Document<unknown, any, User> & Omit<User & {
     _id: import("mongoose").Types.ObjectId;

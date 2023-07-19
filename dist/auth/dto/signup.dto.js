@@ -30,4 +30,9 @@ __decorate([
     (0, class_validator_1.MinLength)(6, { message: 'Password must be 4 characters or more' }),
     __metadata("design:type", String)
 ], SignUpDto.prototype, "password", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
+], SignUpDto.prototype, "AreaOfInterest", void 0);
 //# sourceMappingURL=signup.dto.js.map

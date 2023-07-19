@@ -27,7 +27,7 @@ let AuthService = exports.AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async signUp(signUpDto) {
-        const { name, email, password } = signUpDto;
+        const { name, email, password, AreaOfInterest } = signUpDto;
         const hashedPassword = await bcrypt.hash(password, 10);
         try {
             const existingUser = await this.userModel.findOne({ email });
@@ -41,6 +41,7 @@ let AuthService = exports.AuthService = class AuthService {
                 name,
                 email,
                 password: hashedPassword,
+                AreaOfInterest,
             });
             const token = this.jwtService.sign({ id: user._id }, { secret: process.env.JWT_SECRET });
             const { password: _, ...userWithoutPassword } = user.toObject();

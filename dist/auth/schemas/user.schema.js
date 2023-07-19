@@ -27,6 +27,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String] }),
+    __metadata("design:type", Object)
+], User.prototype, "AreaOfInterst", void 0);
 exports.User = User = __decorate([
     (0, mongoose_1.Schema)({
         timestamps: true,

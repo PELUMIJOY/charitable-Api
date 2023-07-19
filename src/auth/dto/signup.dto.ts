@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import {
+  IsArray,
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
 export class SignUpDto {
   @IsNotEmpty()
@@ -13,4 +19,8 @@ export class SignUpDto {
   @IsString()
   @MinLength(6, { message: 'Password must be 4 characters or more' })
   readonly password: string;
+
+  @IsNotEmpty()
+  @IsArray()
+  readonly AreaOfInterest: Array<string>;
 }
