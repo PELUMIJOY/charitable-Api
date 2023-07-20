@@ -12,8 +12,8 @@ export class User {
   email: string;
   @Prop()
   password: string;
-  @Prop({ type: String, enum: ['Vocational Skill', 'Technical Skill'] })
-  AreaOfInterst: string;
+  @Prop({ type: [String], enum: ['Vocational Skill', 'Technical Skill'] })
+  AreaOfInterst: Array<string>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
