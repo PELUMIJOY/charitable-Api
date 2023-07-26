@@ -32,11 +32,11 @@ export class AuthService {
       if (existingUser) {
         throw new UnauthorizedException('email already exist');
       }
-      if (password.length < 4) {
-        throw new UnauthorizedException(
-          'Password must be 4 characters or more',
-        );
-      }
+      // const validAreas = ['Vocational', 'Technical'];
+      // const areaOfInterest = validAreas.includes(AreaOfInterest)
+      //   ? AreaOfInterest
+      //   : 'Unspecified';
+
       const user = await this.userModel.create({
         name,
         email,

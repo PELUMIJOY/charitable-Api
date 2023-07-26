@@ -34,9 +34,6 @@ let AuthService = exports.AuthService = class AuthService {
             if (existingUser) {
                 throw new common_1.UnauthorizedException('email already exist');
             }
-            if (password.length < 4) {
-                throw new common_1.UnauthorizedException('Password must be 4 characters or more');
-            }
             const user = await this.userModel.create({
                 name,
                 email,

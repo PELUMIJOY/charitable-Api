@@ -30,7 +30,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ type: [String], enum: ['Vocational Skill', 'Technical Skill'] }),
     __metadata("design:type", Array)
-], User.prototype, "AreaOfInterst", void 0);
+], User.prototype, "AreaOfInterest", void 0);
 exports.User = User = __decorate([
     (0, mongoose_1.Schema)({
         timestamps: true,

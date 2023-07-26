@@ -22,5 +22,5 @@ export class SignUpDto {
 
   @IsNotEmpty()
   @IsArray()
-  readonly AreaOfInterest: [string];
+  readonly AreaOfInterest: string[];
 }
